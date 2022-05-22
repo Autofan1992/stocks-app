@@ -53,6 +53,10 @@ export const getTickers = (): AppThunk => async (dispatch, getState) => {
 
         errorsCount = 1
     })
+
+    socket.on('disconnect', () => {
+        dispatch(setIsConnected(false))
+    })
 }
 
 export const changeStocksGroup = (method: 'add' | 'remove', title: string): AppThunk => async (dispatch, getState) => {
