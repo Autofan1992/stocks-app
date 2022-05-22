@@ -1,9 +1,9 @@
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-import { changeStocksGroup } from '../../redux/reducers/stocks-reducer'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { Button, FloatingLabel, Form, InputGroup } from 'react-bootstrap'
 import { getIsConnected } from '../../redux/selectors/stocks-selectors'
+import { changeStocksGroup } from '../../redux/thunks/stocks-thunks'
 
 const StockSchema = Yup.object().shape({
     title: Yup.string()

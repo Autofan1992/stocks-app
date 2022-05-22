@@ -1,13 +1,13 @@
+import { ToastVariants } from '../../types/toast-types'
 import stocksReducer, {
     addStockTitle,
-    changeStocksGroup,
-    initialState,
-    removeStockTitle,
+    initialState, removeStockTitle,
     setChangeInProgress,
     setFetchInterval,
-    setStocks, showToast
+    setStocks,
+    showToast
 } from './stocks-reducer'
-import { ToastVariants } from '../../types/toast-types'
+import { changeStocksGroup } from '../thunks/stocks-thunks'
 
 let state = JSON.parse(JSON.stringify(initialState))
 

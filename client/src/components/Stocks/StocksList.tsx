@@ -1,10 +1,10 @@
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { FC, memo, useEffect } from 'react'
-import { disconnectSocket, getTickers } from '../../redux/reducers/stocks-reducer'
 import { getIsConnected, getIsFetching, getStocks } from '../../redux/selectors/stocks-selectors'
 import { ListGroup, Spinner } from 'react-bootstrap'
 import { AnimatePresence, motion } from 'framer-motion'
 import StockItem from './StockItem'
+import { disconnectSocket, getTickers } from '../../redux/thunks/stocks-thunks'
 
 const variants = {
     enter: (direction: number) => {

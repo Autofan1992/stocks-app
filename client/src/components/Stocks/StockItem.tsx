@@ -2,12 +2,12 @@ import { FC, memo, useEffect, useState } from 'react'
 import { StockType } from '../../types/stock-types'
 import { Button, Col, Form, Row } from 'react-bootstrap'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { changeStocksGroup } from '../../redux/reducers/stocks-reducer'
 import { getChangeInProgress } from '../../redux/selectors/stocks-selectors'
 import Xcircle from '../Icons/Xcircle'
 import ArrowDown from '../Icons/ArrowDown'
 import ArrowUp from '../Icons/ArrowUp'
 import { currencyFormatter } from '../../utils'
+import { changeStocksGroup } from '../../redux/thunks/stocks-thunks'
 
 const StockItem: FC<StockType> = memo(({ ticker, price, change }) => {
     const dispatch = useAppDispatch()

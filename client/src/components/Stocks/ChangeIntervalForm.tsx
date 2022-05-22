@@ -1,9 +1,9 @@
 import { Formik } from 'formik'
-import { changeFetchInterval } from '../../redux/reducers/stocks-reducer'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { Button, FloatingLabel, Form, InputGroup } from 'react-bootstrap'
 import { getFetchInterval, getIsConnected } from '../../redux/selectors/stocks-selectors'
 import * as Yup from 'yup'
+import { changeFetchInterval } from '../../redux/thunks/stocks-thunks'
 
 const StockSchema = Yup.object().shape({
     fetchInterval: Yup.number()
