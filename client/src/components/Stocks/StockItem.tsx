@@ -2,7 +2,7 @@ import { FC, memo, useEffect, useState } from 'react'
 import { StockType } from '../../types/stock-types'
 import { Button, Col, Form, Row } from 'react-bootstrap'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { getChangeInProgress } from '../../redux/selectors/stocks-selectors'
+import { selectChangeInProgress } from '../../redux/selectors/stocks-selectors'
 import Xcircle from '../Icons/Xcircle'
 import ArrowDown from '../Icons/ArrowDown'
 import ArrowUp from '../Icons/ArrowUp'
@@ -11,7 +11,7 @@ import { changeStocksGroup } from '../../redux/thunks/stocks-thunks'
 
 const StockItem: FC<StockType> = memo(({ ticker, price, change }) => {
     const dispatch = useAppDispatch()
-    const changeInProgress = useAppSelector(getChangeInProgress)
+    const changeInProgress = useAppSelector(selectChangeInProgress)
     const [priceDirection, setPriceDirection] = useState<'text-danger' | 'text-success' | ''>('')
     const [isIntersecting, setIsIntersecting] = useState(true)
     const [currentStock, setCurrentStock] = useState({ ticker, price, change })

@@ -2,7 +2,7 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { Button, FloatingLabel, Form, InputGroup } from 'react-bootstrap'
-import { getIsConnected } from '../../redux/selectors/stocks-selectors'
+import { selectIsConnected } from '../../redux/selectors/stocks-selectors'
 import { changeStocksGroup } from '../../redux/thunks/stocks-thunks'
 
 const StockSchema = Yup.object().shape({
@@ -13,7 +13,7 @@ const StockSchema = Yup.object().shape({
 })
 
 const AddStockForm = () => {
-    const isConnected = useAppSelector(getIsConnected)
+    const isConnected = useAppSelector(selectIsConnected)
     const dispatch = useAppDispatch()
 
     return <>

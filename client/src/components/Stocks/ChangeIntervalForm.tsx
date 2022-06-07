@@ -1,7 +1,7 @@
 import { Formik } from 'formik'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { Button, FloatingLabel, Form, InputGroup } from 'react-bootstrap'
-import { getFetchInterval, getIsConnected } from '../../redux/selectors/stocks-selectors'
+import { selectFetchInterval, selectIsConnected } from '../../redux/selectors/stocks-selectors'
 import * as Yup from 'yup'
 import { changeFetchInterval } from '../../redux/thunks/stocks-thunks'
 
@@ -12,8 +12,8 @@ const StockSchema = Yup.object().shape({
 })
 
 const ChangeIntervalForm = () => {
-    const isConnected = useAppSelector(getIsConnected)
-    const fetchInterval = useAppSelector(getFetchInterval)
+    const isConnected = useAppSelector(selectIsConnected)
+    const fetchInterval = useAppSelector(selectFetchInterval)
     const dispatch = useAppDispatch()
 
     return <>

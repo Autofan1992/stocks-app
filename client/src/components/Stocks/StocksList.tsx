@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { FC, memo, useEffect } from 'react'
-import { getIsConnected, getIsFetching, getStocks } from '../../redux/selectors/stocks-selectors'
+import { selectIsConnected, selectIsFetching, selectStocks } from '../../redux/selectors/stocks-selectors'
 import { ListGroup, Spinner } from 'react-bootstrap'
 import { AnimatePresence, motion } from 'framer-motion'
 import StockItem from './StockItem'
@@ -29,9 +29,9 @@ const variants = {
 
 const StocksList: FC = memo(() => {
     const dispatch = useAppDispatch()
-    const stocks = useAppSelector(getStocks)
-    const isFetching = useAppSelector(getIsFetching)
-    const isConnected = useAppSelector(getIsConnected)
+    const stocks = useAppSelector(selectStocks)
+    const isFetching = useAppSelector(selectIsFetching)
+    const isConnected = useAppSelector(selectIsConnected)
 
     useEffect(() => {
         dispatch(getTickers())

@@ -1,13 +1,13 @@
 import { FC } from 'react'
 import { Toast, ToastContainer } from 'react-bootstrap'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
-import { getToast } from '../../../redux/selectors/stocks-selectors'
+import { selectToast } from '../../../redux/selectors/stocks-selectors'
 import { showToast } from '../../../redux/reducers/stocks-reducer'
 import ReactDOM from 'react-dom'
 
 const ErrorToast: FC = () => {
     const dispatch = useAppDispatch()
-    const { message, variant, show } = useAppSelector(getToast)
+    const { message, variant, show } = useAppSelector(selectToast)
 
     const handleClose = () => {
         dispatch(showToast({ message, show: false }))
