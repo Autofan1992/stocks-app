@@ -19,8 +19,7 @@ const StockItem: FC<StockType> = memo(({ ticker, price, change }) => {
     useEffect(() => {
         if (isIntersecting) {
             setCurrentStock({ ticker, price, change })
-            setPriceDirection(currentStock.price > price ? 'text-danger' : currentStock.price < price ? 'text-success' : ''
-            )
+            setPriceDirection(currentStock.price > price ? 'text-danger' : 'text-success')
         }
     }, [price, change, ticker])
 
