@@ -6,7 +6,7 @@ import stocksReducer, {
     setFetchInterval,
     setStocks,
     showToast
-} from './stocks-reducer'
+} from './stocks-slice'
 import { changeStocksGroup } from '../thunks/stocks-thunks'
 
 let state = JSON.parse(JSON.stringify(initialState))

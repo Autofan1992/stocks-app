@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { Toast, ToastContainer } from 'react-bootstrap'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import { selectToast } from '../../../redux/selectors/stocks-selectors'
-import { showToast } from '../../../redux/reducers/stocks-reducer'
+import { showToast } from '../../../redux/slices/stocks-slice'
 import ReactDOM from 'react-dom'
 
 const ErrorToast: FC = () => {

@@ -8,7 +8,7 @@ import {
     setSocketId,
     setStocks,
     showToast
-} from '../reducers/stocks-reducer'
+} from '../slices/stocks-slice'
 import { socket } from '../../api/stocks-api'
 
 const SECONDS_TO_MS = 1000
