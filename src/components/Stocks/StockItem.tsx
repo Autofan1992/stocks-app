@@ -21,7 +21,7 @@ const StockItem: FC<StockType> = memo(({ ticker, price, change }) => {
             setCurrentStock({ ticker, price, change })
             setPriceDirection(currentStock.price > price ? 'text-danger' : 'text-success')
         }
-    }, [price, change, ticker])
+    }, [change, currentStock.price, isIntersecting, price, ticker])
 
     const removeStock = (title: string) => dispatch(changeStocksGroup('remove', title))
 
