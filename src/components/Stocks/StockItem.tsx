@@ -29,7 +29,7 @@ const StockItem: FC<StockType> = memo(({ ticker, price, change }) => {
         <Col xs={3}>
             <h5 data-testid="stock-title">{currentStock.ticker}</h5>
         </Col>
-        <Col xs={5}>
+        <Col xs={6} md={5}>
             <h6 data-testid="stock-price">
                 {currencyFormatter.format(currentStock.price)}&nbsp;
                 {isIntersecting &&
