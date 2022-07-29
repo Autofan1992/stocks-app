@@ -44,7 +44,27 @@ const stocksSlice = createSlice({
         },
         setStocks: (state, { payload }: PayloadAction<StockType[]>) => {
             state.changeInProgress = []
-            state.stocks = payload
+            state.stocks = payload.map(newStock => {
+                const prevStock = state.stocks.find(stock => stock.ticker === newStock.ticker)
+                const date = new Date()
+                const tradeHour = date.getHours() > 10 ? date.getHours() : `0${date.getHours()}`
+                const tradeMinute = date.getMinutes() > 10 ? date.getMinutes() : `0${date.getMinutes()}`
+                const tradeTime = `${tradeHour}:${tradeMinute}`
+
+                if (prevStock) {
+                    newStock.priceHistory = [...prevStock.priceHistory, newStock.price]
+                    newStock.priceChangeTime = [...prevStock.priceChangeTime, tradeTime]
+                    newStock.priceChange = Math.floor(Math.abs(+prevStock.price - +newStock.price))
+                    return newStock
+                }
+
+                return {
+                    ...newStock,
+                    priceHistory: [newStock.price],
+                    priceChangeTime: [tradeTime],
+                    priceChange: 0
+                }
+            })
         },
         addStockTitle: (state, { payload }: PayloadAction<string>) => {
             state.stocksGroup.push(payload)

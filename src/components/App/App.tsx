@@ -18,7 +18,7 @@ function App() {
                 <section className="stocks-list">
                     <Container>
                         <Row>
-                            <Col lg={10} xl={7}>
+                            <Col xl={10}>
                                 <AddStockForm/>
                                 <StocksList/>
                                 <ChangeIntervalForm/>

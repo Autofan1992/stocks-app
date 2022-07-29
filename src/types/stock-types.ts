@@ -1,8 +1,10 @@
 export type StockType = {
     ticker: string,
     exchange: string
-    price: number
-    change: number
+    price: string
+    priceHistory: string[]
+    priceChangeTime: string[]
+    priceChange: number
     change_percent: number
     dividend: number
     yield: number

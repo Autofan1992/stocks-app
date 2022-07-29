@@ -6,9 +6,11 @@ import StockItem from './StockItem'
 describe('Stock Item', () => {
     const { queryByTestId } = render(<Provider store={store}>
         <StockItem
-            change={20}
-            price={30}
+            priceChange={0}
+            priceChangeTime={[]}
+            price={'30'}
             ticker="testTitle"
+            priceHistory={[]}
             last_trade_time="12.12.12"
             change_percent={2}
             dividend={5}

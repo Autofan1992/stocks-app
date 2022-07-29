@@ -30,10 +30,12 @@ test('add stock title to watching group', () => {
 test('set stock to state', () => {
     const newState = stocksReducer(state, setStocks([
         {
-            change: 20,
-            price: 30,
+            priceChange: 20,
+            priceChangeTime: [],
+            price: '30',
             ticker: 'testTitle',
             last_trade_time: '12.12.12',
+            priceHistory: [],
             change_percent: 2,
             dividend: 5,
             exchange: 'test',

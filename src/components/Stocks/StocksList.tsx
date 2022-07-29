@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { FC, memo, useEffect } from 'react'
 import { selectIsConnected, selectIsFetching, selectStocks } from '../../redux/selectors/stocks-selectors'
-import { ListGroup, Spinner } from 'react-bootstrap'
+import { Row, Spinner } from 'react-bootstrap'
 import { AnimatePresence, motion } from 'framer-motion'
 import StockItem from './StockItem'
 import { disconnectSocket, getTickers } from '../../redux/thunks/stocks-thunks'
@@ -41,7 +41,7 @@ const StocksList: FC = memo(() => {
         }
     }, [dispatch])
 
-    return <ListGroup className="my-4 my-lg-5" data-testid="stocks-list-group">
+    return <Row className="my-4 my-lg-5 g-4" data-testid="stocks-list-group">
         <AnimatePresence>
             {stocks.length > 0
                 ? stocks.map(stock => <motion.div
@@ -53,7 +53,7 @@ const StocksList: FC = memo(() => {
                             x: { type: 'spring', stiffness: 300, damping: 30 },
                             opacity: { duration: 0.2 }
                         }}
-                        className="list-group-item"
+                        className="col-lg-6"
                         key={stock.ticker}
                     >
                         <StockItem {...stock} />
@@ -68,7 +68,7 @@ const StocksList: FC = memo(() => {
                     </div>
             }
         </AnimatePresence>
-    </ListGroup>
+    </Row>
 
 })
 
