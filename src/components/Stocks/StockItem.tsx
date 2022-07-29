@@ -76,7 +76,7 @@ const StockItem: FC<StockType> = memo(({ ticker, price, priceChange, priceHistor
                 </Col>
                 <Col xs={6} md>
                     <h6 data-testid="stock-price">
-                        {currencyFormatter(+price)}&nbsp;
+                        {currencyFormatter(+currentStock.price)}&nbsp;
                         {(isIntersecting && currentStock.priceChange > 0) &&
                             <>
                                 {priceDirection === 'text-success'
