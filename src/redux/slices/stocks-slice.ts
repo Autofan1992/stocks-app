@@ -1,12 +1,13 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { StockNames, StockType } from '../../types/stock-types'
-import { ToastType, ToastVariants } from '../../types/toast-types'
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { StockNames, StockType } from "../../types/stock-types"
+import { ToastType, ToastVariants } from "../../types/toast-types"
+import { dateFormatter } from "../../utils"
 
 export const initialState = {
     toast: {
         show: false,
         message: null,
-        variant: ToastVariants.Info
+        variant: ToastVariants.Info,
     } as ToastType,
     isConnected: false,
     isFetching: false,
@@ -21,11 +22,11 @@ export const initialState = {
         StockNames.Microsoft,
         StockNames.Tesla,
     ] as string[],
-    stocks: [] as StockType[]
+    stocks: [] as StockType[],
 }
 
 const stocksSlice = createSlice({
-    name: 'stocks',
+    name: "stocks",
     initialState,
     reducers: {
         setIsConnected: (state, { payload }: PayloadAction<boolean>) => {
@@ -45,24 +46,31 @@ const stocksSlice = createSlice({
         setStocks: (state, { payload }: PayloadAction<StockType[]>) => {
             state.changeInProgress = []
             state.stocks = payload.map(newStock => {
-                const prevStock = state.stocks.find(stock => stock.ticker === newStock.ticker)
                 const date = new Date()
-                const tradeHour = date.getHours() > 10 ? date.getHours() : `0${date.getHours()}`
-                const tradeMinute = date.getMinutes() > 10 ? date.getMinutes() : `0${date.getMinutes()}`
-                const tradeTime = `${tradeHour}:${tradeMinute}`
+                const prevStock = state.stocks.find(
+                    stock => stock.ticker === newStock.ticker
+                )
 
                 if (prevStock) {
-                    newStock.priceHistory = [...prevStock.priceHistory, newStock.price]
-                    newStock.priceChangeTime = [...prevStock.priceChangeTime, tradeTime]
-                    newStock.priceChange = Math.floor(Math.abs(+prevStock.price - +newStock.price))
+                    newStock.priceHistory = [
+                        ...prevStock.priceHistory,
+                        newStock.price,
+                    ]
+                    newStock.priceChangeTime = [
+                        ...prevStock.priceChangeTime,
+                        dateFormatter(date),
+                    ]
+                    newStock.priceChange = Math.floor(
+                        Math.abs(+prevStock.price - +newStock.price)
+                    )
                     return newStock
                 }
 
                 return {
                     ...newStock,
                     priceHistory: [newStock.price],
-                    priceChangeTime: [tradeTime],
-                    priceChange: 0
+                    priceChangeTime: [dateFormatter(date)],
+                    priceChange: 0,
                 }
             })
         },
@@ -70,8 +78,12 @@ const stocksSlice = createSlice({
             state.stocksGroup.push(payload)
         },
         removeStockTitle: (state, { payload }: PayloadAction<string>) => {
-            state.stocksGroup = state.stocksGroup.filter(title => title !== payload)
-            state.stocks = state.stocks.filter(stock => stock.ticker !== payload)
+            state.stocksGroup = state.stocksGroup.filter(
+                title => title !== payload
+            )
+            state.stocks = state.stocks.filter(
+                stock => stock.ticker !== payload
+            )
         },
         setFetchInterval: (state, { payload }: PayloadAction<number>) => {
             state.fetchInterval = payload
@@ -79,7 +91,7 @@ const stocksSlice = createSlice({
         setChangeInProgress: (state, { payload }: PayloadAction<string>) => {
             state.changeInProgress.push(payload)
         },
-    }
+    },
 })
 
 export const {
@@ -91,7 +103,7 @@ export const {
     setFetchInterval,
     setIsFetching,
     setSocketId,
-    setIsConnected
+    setIsConnected,
 } = stocksSlice.actions
 
 export default stocksSlice.reducer
